@@ -18,6 +18,10 @@
             "type": "title",
             "format": "{user-name-colored}{#light_red}@{host-name-colored}"
         },
+	{
+	    "type": "host",
+	    "key": "Host         "
+	},
         {
             "type": "os",
             "key": "System       "

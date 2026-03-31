@@ -31,8 +31,8 @@
 		swaybar_command waybar
 	}
 #-mouse cursor
-	seat * xcursor_theme Adwaita 24
-	seat seat0 xcursor_theme Adwaita 24
+	seat * xcursor_theme Bibata-Original-Classic 24
+	seat seat0 xcursor_theme Bibata-Original-Classic 24
 
 #                  _                  _          _   _
 #    ___ _   _ ___| |_ ___  _ __ ___ (_)______ _| |_(_) ___  _ __
@@ -97,7 +97,7 @@ include ~/.config/sway/outputs
 	set $browser firefox
 	set $file thunar
 	set $text kate
-	set $lock hyprlock
+	set $lock swaylock
 #-sway
 	bindsym $mod+Shift+c reload
 	bindsym $mod+tab exec $menu
@@ -125,6 +125,9 @@ include ~/.config/sway/outputs
 	bindsym $mod+Shift+8 move container to workspace number 8
 	bindsym $mod+Shift+9 move container to workspace number 9
 	bindsym $mod+Shift+0 move container to workspace number 10
+
+	bindsym $mod+prior workspace prev
+	bindsym $mod+next workspace next
 #----window control
 	# navigation
 	bindsym $mod+$left focus left
@@ -168,7 +171,7 @@ include ~/.config/sway/outputs
 	bindsym $mod+print exec mkdir -p ~/Pictures/Screenshots && output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused==true).name') && grim -o "$output" /tmp/screenshot.png && cp /tmp/screenshot.png ~/Pictures/Screenshots/$(date +%F_%H-%M-%S).png && wl-copy < /tmp/screenshot.png && notify-send "Screenshot Taken" "Saved to ~/Pictures/Screenshots/"
 	# power
 	bindsym XF86PowerOff exec wlogout
-	bindsym control+alt+delete exec swaylock
+	bindsym control+alt+delete exec swaylock -c 101010
 #-programs
 	bindsym $mod+return exec foot
 	bindsym $mod+s exec $browser
@@ -177,8 +180,10 @@ include ~/.config/sway/outputs
 #-monitor config
 	bindsym $mod+shift+m exec $HOME/Scripts/toggle_edp-1.sh
 #-clamshell mode
-	bindswitch --reload --locked lid:on output eDP-1 disable
+	bindswitch --reload --locked lid:on output eDP-1 disable & swaylock -c 101010
 	bindswitch --reload --locked lid:off output eDP-1 enable
+
+
 #   _                   _       
 #  (_)_ __  _ __  _   _| |_ ___ 
 #  | | '_ \| '_ \| | | | __/ __|
